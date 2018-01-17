@@ -25,17 +25,17 @@ public:
 
     friend istream& operator >> (istream& is, Request& r);
 
-    inline string IP() { return ip; }
-    inline string LogName() { return logName; }
-    inline string AuthName() { return authName; }
-    inline string DateTime() { return dateTime; }
-    inline string Method() { return method; }
-    inline string Document() { return document; }
-    inline string HTTPVersion() { return httpVersion; }
-    inline uint32_t HTTPCode() { return httpCode; }
-    inline uint64_t ContentLength() { return contentLength; }
-    inline string Referer() { return referer; }
-    inline string UserAgent() { return userAgent; }
+    inline string IP() const { return ip; }
+    inline string LogName() const { return logName; }
+    inline string AuthName() const { return authName; }
+    inline string DateTime() const { return dateTime; }
+    inline string Method() const { return method; }
+    inline string Document() const { return document; }
+    inline string HTTPVersion() const { return httpVersion; }
+    inline uint32_t HTTPCode() const { return httpCode; }
+    inline uint64_t ContentLength() const { return contentLength; }
+    inline string Referer() const { return referer; }
+    inline string UserAgent() const { return userAgent; }
 
 protected:
     string ip;
