@@ -19,7 +19,7 @@ bool LogParser::LoadFile(std::string filename, bool excludeImages, int selectHou
 
 bool GenerateDotFile(std::string filename)
 {
-    ofstream os(filename);
+    std::ofstream os(filename);
     if(os)
     {
        os << "digraph {\n";
@@ -41,20 +41,21 @@ bool GenerateDotFile(std::string filename)
     }
     else
     {
-        cerr << "Erreur lors de la création du fichier .dot" << endl;
+        std::cerr << "Erreur lors de la crÃ©ation du fichier .dot" << std::endl;
         return false;
     }
     os.close();
-    return false;
+    return true;
 }
 
-void LogParser::computeTop(uint64_t lastPosition)
-{
-    bool nbViewsCompare (uint64_t a, uint64_t b)
+bool nbViewsCompare (uint64_t a, uint64_t b)
     {
         return a > b;
     }
-    top10 =
+
+void LogParser::computeTop(uint64_t lastPosition)
+{
+
     std::unordered_map<std::string, Document>::iterator itTargets = website.begin();
    while (itTargets != website.end())
    {
@@ -66,12 +67,12 @@ void LogParser::computeTop(uint64_t lastPosition)
        }
        if(top10.size() < lastPosition)
        {
-           top10.insert(itTargets->first, nbViews);
+           top10.insert(std::make_pair(itTargets->first, nbViews));
        }
-       else if(nbViews > std::prev(top10.end()).second)
+       else if(nbViews > std::prev(top10.end())->second)
        {
            top10.erase(std::prev(top10.end()));
-           top10.insert(itTargets->first, nbViews);
+           top10.insert(std::make_pair(itTargets->first, nbViews));
        }
        itTargets++;
    }
