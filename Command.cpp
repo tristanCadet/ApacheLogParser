@@ -19,7 +19,7 @@ Command::Command(const char * const params[], size_t paramCount) : sourceFile(),
                         if (dotFile.empty())
                             dotFile = params[i];
                         else
-                            errors.push_back("Un seul fichier dot doit être spécifié."); 
+                            errors.push_back("Un seul fichier dot doit être spécifié.");
                         break;
                     }
                     else
@@ -47,7 +47,7 @@ Command::Command(const char * const params[], size_t paramCount) : sourceFile(),
                         {
                             errors.push_back("L'heure doit être un nombre entier positif compris entre 0 et 23.");
                         }
-                        
+
                         break;
                     }
                     else
@@ -67,7 +67,7 @@ Command::Command(const char * const params[], size_t paramCount) : sourceFile(),
                 errors.push_back("Un seul fichier log doit être spécifié.");
         }
     }
-    
+
     if (sourceFile.empty())
     {
         errors.push_back("Un fichier log doit être spécifié.");
@@ -88,7 +88,7 @@ void Command::Execute()
     {
         for (const std::string &err : errors)
             std::cerr << err << std::endl;
-        
+
         return;
     }
 }

@@ -1,14 +1,14 @@
 #include "Command.h"
-#include "Request.h"
+#include "HTTPRequest.h"
 
 #include <iostream>
 #include <fstream>
 
 using namespace std;
 
-static void testRequest()
+static void testHTTPRequest()
 {
-    Request r;
+    HTTPRequest r;
     ifstream ifs("./anonyme.log");
     if (ifs)
     {
@@ -23,11 +23,11 @@ static void testRequest()
 int main(int argc, char *argv[])
 {
     cout << "Hello world!" << endl;
-    
-    testRequest();
-    
+
+    testHTTPRequest();
+
     Command command(argv, argc);
     command.Execute();
-    
+
     return 0;
 }
