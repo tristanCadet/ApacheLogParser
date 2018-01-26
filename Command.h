@@ -7,7 +7,7 @@
 class Command
 {
 public:
-    Command(const char *params[], size_t paramCount);
+    Command(const char * const params[], size_t paramCount);
 
     void Execute();
 

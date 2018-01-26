@@ -22,7 +22,7 @@ release: CXXFLAGS += -O3
 release: $(TARGET)
 
 .PHONY: debug
-debug: CXXFLAGS += -Og -g -DMAP
+debug: CXXFLAGS += -Og -g -DDEBUG
 debug: $(TARGET)
 
 $(TARGET): $(OBJ)

@@ -1,3 +1,4 @@
+#include "Command.h"
 #include "Request.h"
 
 #include <iostream>
@@ -15,13 +16,18 @@ static void testRequest()
     }
     else
     {
-        cerr << "Le fichier n'a pas pu être ouvert." << endl;
+        cerr << "Le fichier n'a pas pu Ãªtre ouvert." << endl;
     }
 }
 
-int main()
+int main(int argc, char *argv[])
 {
     cout << "Hello world!" << endl;
+    
     testRequest();
+    
+    Command command(argv, argc);
+    command.Execute();
+    
     return 0;
 }
