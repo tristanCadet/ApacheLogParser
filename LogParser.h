@@ -3,7 +3,7 @@
 
 #include <string>
 #include <unordered_map>
-#include <vector>
+#include <map>
 #include <utility>
 
 struct Document
@@ -18,13 +18,16 @@ public:
 
     bool LoadFile(std::string filename, bool excludeImages, int selectHour, bool graph);
 
-    inline const std::vector<std::pair<std::string, uint64_t>>& Top10() { return top10; }
+    inline const std::multimap<std::string, uint64_t>& Top10() { return top10; }
 
     bool GenerateDotFile(std::string filename);
 
 protected:
+
+    void computeTop(uint64_t lastPosition = 10);
+
     std::unordered_map<std::string, Document> website;
-    std::vector<std::pair<std::string, uint64_t>> top10;
+    std::multimap<std::string, uint64_t> top10;
 };
 
 #endif // LOGPARSER_H_INCLUDED
