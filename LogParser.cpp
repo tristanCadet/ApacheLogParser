@@ -15,7 +15,7 @@ bool GenerateDotFile(std::string filename)
     ofstream os(filename);
     if(os)
     {
-       os << "digraph {\r\n";
+       os << "digraph {\n";
        std::unordered_map<std::string, Document>::iterator itTargets = website.begin();
        while (itTargets != website.end())
        {
@@ -25,12 +25,12 @@ bool GenerateDotFile(std::string filename)
                 os << "    ";
                 os << itReferers->first << " -> ";
                 os << itTargets->first << " [label=\"";
-                os << itReferers->second << "\"];\r\n";
+                os << itReferers->second << "\"];\n";
                 itReferers++;
            }
            itTargets++;
        }
-       os << "}\r\n";
+       os << "}\n";
     }
     else
     {

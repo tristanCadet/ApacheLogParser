@@ -33,17 +33,17 @@ istream& operator >> (istream& is, HTTPRequest& r)
     getline(is, r.userAgent, '"');
 
 #ifdef DEBUG
-    cout << "IP : " << r.ip << "\r\n";
-    cout << "logName : " << r.logName << "\r\n";
-    cout << "authName : " << r.authName << "\r\n";
-    cout << "dateTime : " << r.dateTime << "\r\n";
-    cout << "method : " << r.method << "\r\n";
-    cout << "document : " << r.document << "\r\n";
-    cout << "httpVersion : " << r.httpVersion << "\r\n";
-    cout << "httpCode : " << r.httpCode << "\r\n";
-    cout << "contentLength : " << r.contentLength << "\r\n";
-    cout << "referer : " << r.referer << "\r\n";
-    cout << "userAgent : " << r.userAgent << endl;
+    cerr << "IP : " << r.ip << "\n";
+    cerr << "logName : " << r.logName << "\n";
+    cerr << "authName : " << r.authName << "\n";
+    cerr << "dateTime : " << r.dateTime << "\n";
+    cerr << "method : " << r.method << "\n";
+    cerr << "document : " << r.document << "\n";
+    cerr << "httpVersion : " << r.httpVersion << "\n";
+    cerr << "httpCode : " << r.httpCode << "\n";
+    cerr << "contentLength : " << r.contentLength << "\n";
+    cerr << "referer : " << r.referer << "\n";
+    cerr << "userAgent : " << r.userAgent << endl;
 #endif // DEBUG
 
     return is;
