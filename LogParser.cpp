@@ -17,7 +17,7 @@ bool LogParser::LoadFile(std::string filename, bool excludeImages, int selectHou
     return false;
 }
 
-bool GenerateDotFile(std::string filename)
+bool LogParser::GenerateDotFile(std::string filename)
 {
     std::ofstream os(filename);
     if(os)
