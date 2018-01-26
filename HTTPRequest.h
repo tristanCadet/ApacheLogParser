@@ -10,14 +10,9 @@ class HTTPRequest
 {
 
 public:
-    HTTPRequest(string anIP = "", string aLogName = "", string anAuthName = "",
-            string aDateTime = "", string aMethod = "", string aDocument = "",
-            string aHTTPVersion = "", uint32_t aHTTPCode = -1, uint64_t aContentLength = -1,
-            string aReferer = "", string aUserAgent = "")
-        : ip(anIP), logName(aLogName), authName(anAuthName), dateTime(aDateTime),
-          method(aMethod), document(aDocument), httpVersion(aHTTPVersion),
-          httpCode(aHTTPCode), contentLength(aContentLength), referer(aReferer),
-          userAgent(aUserAgent)
+    HTTPRequest()
+        : ip(), logName(), authName(), dateTime(), method(), document(), httpVersion(),
+          httpCode(), contentLength(), referer(), userAgent()
     {}
     HTTPRequest(const HTTPRequest & aHTTPRequest);
     virtual ~HTTPRequest() {}
