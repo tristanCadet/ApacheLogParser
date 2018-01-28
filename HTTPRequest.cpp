@@ -15,13 +15,12 @@ istream& operator >> (istream& is, HTTPRequest& r)
     is.ignore(numeric_limits<streamsize>::max(), '[');
     getline(is, r.dateTime, ']');
 
+    is.ignore(numeric_limits<streamsize>::max(), '"');
     is >> r.method;
-    r.method.erase(0, 1);
 
     is >> r.document;
 
-    is >> r.httpVersion;
-    r.httpVersion.erase(r.httpVersion.length() - 1, 1);
+    getline(is, r.httpVersion, '"');
 
     is >> r.httpCode;
     is >> r.contentLength;
