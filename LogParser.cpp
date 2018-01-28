@@ -180,28 +180,20 @@ bool LogParser::GenerateDotFile(std::string filename)
 
 void LogParser::computeTop(uint64_t lastPosition)
 {
-    std::unordered_map<std::string, Document>::iterator itTargets = website.begin();
-    while (itTargets != website.end())
+    for (const std::pair<std::string, Document> &document : website)
     {
         uint64_t viewCount = 0;
-        std::unordered_map<std::string, uint64_t>::iterator itReferers =
-            itTargets->second.referers.begin();
-        while (itReferers != itTargets->second.referers.end())
-        {
-            viewCount += itReferers->second;
-            itReferers++;
-        }
+        for (const std::pair<std::string, uint64_t> &referer : document.second.referers)
+            viewCount += referer.second;
+
         if (top.size() < lastPosition)
         {
-            top.emplace(viewCount, itTargets->first);
+            top.emplace(viewCount, document.first);
         }
         else if (viewCount > std::prev(top.end())->first)
         {
             top.erase(std::prev(top.end()));
-            top.emplace(viewCount, itTargets->first);
+            top.emplace(viewCount, document.first);
         }
-        itTargets++;
     }
 }
-
-
