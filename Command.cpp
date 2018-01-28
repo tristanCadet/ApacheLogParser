@@ -43,7 +43,7 @@ Command::Command(size_t paramCount, const char * const params[]) : sourceFile(),
                             if (selectHour == -1)
                                 selectHour = hour;
                             else
-                                errors.push_back("L'heure ne doit être spécifié qu'une seule fois");
+                                errors.push_back("L'heure ne doit être spécifiée qu'une seule fois.");
                         }
                         else
                         {
@@ -84,7 +84,7 @@ void Command::Execute()
               << ", exclude = " << exclude
               << ", selectHour = " << selectHour
               << "]" << std::endl;
-#endif
+#endif // DEBUG
 
     if (!errors.empty())
     {
