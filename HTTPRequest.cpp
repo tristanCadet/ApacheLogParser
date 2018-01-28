@@ -6,6 +6,11 @@
 
 using namespace std;
 
+HTTPRequest::HTTPRequest() : ip(), logName(), authName(), dateTime(), method(), document(), httpVersion(), httpCode(), contentLength(), referer(), userAgent()
+{
+
+}
+
 istream& operator >> (istream& is, HTTPRequest& r)
 {
     is >> r.ip;
@@ -32,17 +37,17 @@ istream& operator >> (istream& is, HTTPRequest& r)
     getline(is, r.userAgent, '"');
 
 #ifdef DEBUG
-    cerr << "IP : " << r.ip << "\n";
-    cerr << "logName : " << r.logName << "\n";
-    cerr << "authName : " << r.authName << "\n";
-    cerr << "dateTime : " << r.dateTime << "\n";
-    cerr << "method : " << r.method << "\n";
-    cerr << "document : " << r.document << "\n";
-    cerr << "httpVersion : " << r.httpVersion << "\n";
-    cerr << "httpCode : " << r.httpCode << "\n";
-    cerr << "contentLength : " << r.contentLength << "\n";
-    cerr << "referer : " << r.referer << "\n";
-    cerr << "userAgent : " << r.userAgent << endl;
+    cerr << "IP : " << r.ip << "\n"
+         << "logName : " << r.logName << "\n"
+         << "authName : " << r.authName << "\n"
+         << "dateTime : " << r.dateTime << "\n"
+         << "method : " << r.method << "\n"
+         << "document : " << r.document << "\n"
+         << "httpVersion : " << r.httpVersion << "\n"
+         << "httpCode : " << r.httpCode << "\n"
+         << "contentLength : " << r.contentLength << "\n"
+         << "referer : " << r.referer << "\n"
+         << "userAgent : " << r.userAgent << endl;
 #endif // DEBUG
 
     return is;

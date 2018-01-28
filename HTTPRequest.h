@@ -7,10 +7,7 @@ class HTTPRequest
 {
 
 public:
-    HTTPRequest()
-        : ip(), logName(), authName(), dateTime(), method(), document(), httpVersion(),
-          httpCode(), contentLength(), referer(), userAgent()
-    {}
+    HTTPRequest();
     HTTPRequest(const HTTPRequest & aHTTPRequest) = default;
     HTTPRequest & operator = (const HTTPRequest & aHTTPRequest) = default;
     virtual ~HTTPRequest() = default;
