@@ -24,7 +24,7 @@ class LogParser
 public:
     LogParser();
 
-    bool LoadFile(std::string filename, bool excludeImages, int selectHour,
+    bool LoadFile(std::string filename, bool exclude, int selectHour,
                   bool graph);
 
     inline const std::multimap<uint64_t, std::string, nbViewsCompare>& Top() { return top; }

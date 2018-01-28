@@ -14,7 +14,7 @@ public:
 protected:
     std::string sourceFile;
     std::string dotFile;
-    bool excludeImages;
+    bool exclude;
     int selectHour;
 
     std::vector<std::string> errors;

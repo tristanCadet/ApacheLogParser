@@ -3,7 +3,7 @@
 #include <sstream>
 #include <iostream>
 
-Command::Command(const char * const params[], size_t paramCount) : sourceFile(), dotFile(), excludeImages(false), selectHour(-1), errors()
+Command::Command(const char * const params[], size_t paramCount) : sourceFile(), dotFile(), exclude(false), selectHour(-1), errors()
 {
     for (size_t i = 1; i < paramCount; i++)
     {
@@ -27,7 +27,7 @@ Command::Command(const char * const params[], size_t paramCount) : sourceFile(),
                 }
                 else if (params[i][j] == 'e')
                 {
-                    excludeImages = true;
+                    exclude = true;
                 }
                 else if (params[i][j] == 't')
                 {
@@ -79,7 +79,7 @@ void Command::Execute()
 #ifdef DEBUG
     std::cerr << "[sourceFile = " << sourceFile
               << ", dotFile = " << dotFile
-              << ", excludeImages = " << excludeImages
+              << ", exclude = " << exclude
               << ", selectHour = " << selectHour
               << "]" << std::endl;
 #endif
