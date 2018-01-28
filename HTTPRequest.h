@@ -2,7 +2,6 @@
 #define HTTPREQUEST_H_INCLUDED
 
 #include <string>
-#include <iostream>
 
 class HTTPRequest
 {
@@ -12,9 +11,9 @@ public:
         : ip(), logName(), authName(), dateTime(), method(), document(), httpVersion(),
           httpCode(), contentLength(), referer(), userAgent()
     {}
-    HTTPRequest(const HTTPRequest & aHTTPRequest);
-    virtual ~HTTPRequest() {}
-    HTTPRequest & operator = (const HTTPRequest & aHTTPRequest);
+    HTTPRequest(const HTTPRequest & aHTTPRequest) = default;
+    HTTPRequest & operator = (const HTTPRequest & aHTTPRequest) = default;
+    virtual ~HTTPRequest() = default;
 
     friend std::istream& operator >> (std::istream& is, HTTPRequest& r);
 

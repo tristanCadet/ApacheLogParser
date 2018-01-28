@@ -4,7 +4,6 @@
 #include <string>
 #include <unordered_map>
 #include <map>
-#include <utility>
 
 struct Document
 {
@@ -15,6 +14,10 @@ class LogParser
 {
 public:
     LogParser();
+    LogParser(const LogParser &parser) = default;
+    LogParser& operator=(const LogParser &parser) = default;
+
+    virtual ~LogParser() = default;
 
     bool LoadFile(std::string filename, bool exclude, int selectHour,
                   bool graph);

@@ -1,12 +1,11 @@
-#include "HTTPRequest.h"
 #include "LogParser.h"
+
+#include "HTTPRequest.h"
 
 #include <iostream>
 #include <fstream>
 #include <string>
 #include <unordered_map>
-#include <map>
-#include <utility>
 #include <algorithm>
 #include <functional>
 
