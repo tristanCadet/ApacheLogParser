@@ -157,10 +157,13 @@ bool LogParser::GenerateDotFile(std::string filename)
                 itTargets->second.referers.begin();
             while (itReferers != itTargets->second.referers.end())
             {
-                os << "    ";
-                os << itReferers->first << " -> ";
-                os << itTargets->first << " [label=\"";
-                os << itReferers->second << "\"];\n";
+                if (itReferers->first != "-")
+                {
+                    os << "    ";
+                    os << "\"" << itReferers->first << "\" -> ";
+                    os << "\"" << itTargets->first << "\" [label=\"";
+                    os << itReferers->second << "\"];\n";
+                }
                 itReferers++;
             }
             itTargets++;
