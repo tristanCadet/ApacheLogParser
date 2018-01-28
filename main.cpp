@@ -22,10 +22,6 @@ static void testHTTPRequest()
 
 int main(int argc, char *argv[])
 {
-    cout << "Hello world!" << endl;
-
-    testHTTPRequest();
-
     Command command(argv, argc);
     command.Execute();
 
