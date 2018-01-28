@@ -80,7 +80,7 @@ namespace request
     static bool isAcceptedCode(int code)
     {
         constexpr int HTTP_CODE_START = 200;
-        constexpr int HTTP_CODE_END = 399;
+        constexpr int HTTP_CODE_END = 299;
         return code >= HTTP_CODE_START && code <= HTTP_CODE_END;
     }
 
