@@ -24,7 +24,7 @@ public:
     inline std::string Method() const { return method; }
     inline std::string Document() const { return document; }
     inline std::string HTTPVersion() const { return httpVersion; }
-    inline uint32_t HTTPCode() const { return httpCode; }
+    inline std::uint32_t HTTPCode() const { return httpCode; }
     inline std::string ContentLength() const { return contentLength; }
     inline std::string Referer() const { return referer; }
     inline std::string UserAgent() const { return userAgent; }
