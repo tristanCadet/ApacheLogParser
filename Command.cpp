@@ -34,9 +34,9 @@ Command::Command(const char * const params[], size_t paramCount) : sourceFile(),
                     if (params[i][j+1] == '\0' && i+1 < paramCount)
                     {
                         i++;
-                        std::stringstream ss(params[i]);
+                        std::istringstream ss(params[i]);
                         int hour;
-                        if (ss >> hour && hour >= 0 && hour < 24)
+                        if (ss >> hour && ss.eof() && hour >= 0 && hour < 24)
                         {
                             if (selectHour == -1)
                                 selectHour = hour;
