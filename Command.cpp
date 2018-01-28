@@ -1,5 +1,7 @@
 #include "Command.h"
 
+#include "LogParser.h"
+
 #include <sstream>
 #include <iostream>
 
@@ -90,6 +92,27 @@ void Command::Execute()
             std::cerr << err << std::endl;
 
         return;
+    }
+
+    LogParser parser;
+
+    std::cout << "Lecture du fichier " << sourceFile << "..." << std::endl;
+    if (parser.LoadFile(sourceFile, exclude, selectHour, !dotFile.empty()))
+    {
+        std::cout << "Terminé !" << std::endl << std::endl;
+
+        if (!dotFile.empty())
+        {
+            std::cout << "Génération du fichier " << dotFile << "..." << std::endl;
+            if (parser.GenerateDotFile(dotFile))
+                std::cout << "Terminé !" << std::endl << std::endl;
+        }
+
+        std::cout << "Top 10 des documents les plus visités : " << std::endl;
+        for (const auto &element : parser.Top())
+        {
+            std::cout << "  - " << element.second << " (" << element.first << " hits)" << std::endl;
+        }
     }
 }
 
