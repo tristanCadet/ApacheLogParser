@@ -181,22 +181,22 @@ void LogParser::computeTop(uint64_t lastPosition)
     std::unordered_map<std::string, Document>::iterator itTargets = website.begin();
     while (itTargets != website.end())
     {
-        uint64_t nbViews = 0;
+        uint64_t viewCount = 0;
         std::unordered_map<std::string, uint64_t>::iterator itReferers =
             itTargets->second.referers.begin();
         while (itReferers != itTargets->second.referers.end())
         {
-            nbViews += itReferers->second;
+            viewCount += itReferers->second;
             itReferers++;
         }
         if (top.size() < lastPosition)
         {
-            top.insert(std::make_pair(nbViews, itTargets->first));
+            top.insert(std::make_pair(viewCount, itTargets->first));
         }
-        else if (nbViews > std::prev(top.end())->first)
+        else if (viewCount > std::prev(top.end())->first)
         {
             top.erase(std::prev(top.end()));
-            top.insert(std::make_pair(nbViews, itTargets->first));
+            top.insert(std::make_pair(viewCount, itTargets->first));
         }
         itTargets++;
     }
