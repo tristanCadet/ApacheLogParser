@@ -5,7 +5,7 @@
 #include <sstream>
 #include <iostream>
 
-Command::Command(const char * const params[], size_t paramCount) : sourceFile(), dotFile(), exclude(false), selectHour(-1), errors()
+Command::Command(size_t paramCount, const char * const params[]) : sourceFile(), dotFile(), exclude(false), selectHour(-1), errors()
 {
     for (size_t i = 1; i < paramCount; i++)
     {
