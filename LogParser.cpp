@@ -74,7 +74,7 @@ namespace request
     static bool isAcceptedMethod(const std::string &method)
     {
         constexpr auto METHODS = {"GET", "POST"};
-        return std::any_of(METHODS.begin(), METHODS.end(), [method](const std::string &m) { return method == m; });
+        return std::find(METHODS.begin(), METHODS.end(), method) != METHODS.end();
     }
 
     static bool isAcceptedCode(int code)
@@ -174,6 +174,7 @@ bool LogParser::GenerateDotFile(std::string filename)
         std::cerr << "Erreur lors de la création du fichier " << filename << "." << std::endl;
         return false;
     }
+
     return true;
 }
 
@@ -192,12 +193,12 @@ void LogParser::computeTop(uint64_t lastPosition)
         }
         if (top.size() < lastPosition)
         {
-            top.insert(std::make_pair(viewCount, itTargets->first));
+            top.emplace(viewCount, itTargets->first);
         }
         else if (viewCount > std::prev(top.end())->first)
         {
             top.erase(std::prev(top.end()));
-            top.insert(std::make_pair(viewCount, itTargets->first));
+            top.emplace(viewCount, itTargets->first);
         }
         itTargets++;
     }
