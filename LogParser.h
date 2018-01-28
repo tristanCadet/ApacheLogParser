@@ -19,8 +19,7 @@ public:
 
     virtual ~LogParser() = default;
 
-    bool LoadFile(std::string filename, bool exclude, int selectHour,
-                  bool graph);
+    bool LoadFile(std::string filename, bool exclude, int selectHour);
 
     inline const std::multimap<uint64_t, std::string, std::greater<uint64_t>>& Top() { return top; }
 

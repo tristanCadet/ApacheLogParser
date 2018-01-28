@@ -104,7 +104,7 @@ LogParser::LogParser() : website(), top()
 }
 
 bool LogParser::LoadFile(std::string filename, bool exclude,
-                         int selectHour, bool graph)
+                         int selectHour)
 {
     std::ifstream file(filename);
     if (file)
@@ -171,10 +171,9 @@ bool LogParser::GenerateDotFile(std::string filename)
     }
     else
     {
-        std::cerr << "Erreur lors de la création du fichier .dot" << std::endl;
+        std::cerr << "Erreur lors de la création du fichier " << filename << "." << std::endl;
         return false;
     }
-    os.close();
     return true;
 }
 

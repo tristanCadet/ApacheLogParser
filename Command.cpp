@@ -97,7 +97,7 @@ void Command::Execute()
     LogParser parser;
 
     std::cout << "Lecture du fichier " << sourceFile << "..." << std::endl;
-    if (parser.LoadFile(sourceFile, exclude, selectHour, !dotFile.empty()))
+    if (parser.LoadFile(sourceFile, exclude, selectHour))
     {
         std::cout << "Terminé !" << std::endl << std::endl;
 
