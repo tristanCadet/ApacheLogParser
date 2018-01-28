@@ -28,7 +28,7 @@ public:
     inline string Document() const { return document; }
     inline string HTTPVersion() const { return httpVersion; }
     inline uint32_t HTTPCode() const { return httpCode; }
-    inline uint64_t ContentLength() const { return contentLength; }
+    inline string ContentLength() const { return contentLength; }
     inline string Referer() const { return referer; }
     inline string UserAgent() const { return userAgent; }
 
@@ -41,7 +41,7 @@ protected:
     string document;
     string httpVersion;
     uint32_t httpCode;
-    uint64_t contentLength;
+    string contentLength;
     string referer;
     string userAgent;
 };
