@@ -4,8 +4,6 @@
 #include <string>
 #include <iostream>
 
-using namespace std;
-
 class HTTPRequest
 {
 
@@ -18,32 +16,32 @@ public:
     virtual ~HTTPRequest() {}
     HTTPRequest & operator = (const HTTPRequest & aHTTPRequest);
 
-    friend istream& operator >> (istream& is, HTTPRequest& r);
+    friend std::istream& operator >> (std::istream& is, HTTPRequest& r);
 
-    inline string IP() const { return ip; }
-    inline string LogName() const { return logName; }
-    inline string AuthName() const { return authName; }
-    inline string DateTime() const { return dateTime; }
-    inline string Method() const { return method; }
-    inline string Document() const { return document; }
-    inline string HTTPVersion() const { return httpVersion; }
+    inline std::string IP() const { return ip; }
+    inline std::string LogName() const { return logName; }
+    inline std::string AuthName() const { return authName; }
+    inline std::string DateTime() const { return dateTime; }
+    inline std::string Method() const { return method; }
+    inline std::string Document() const { return document; }
+    inline std::string HTTPVersion() const { return httpVersion; }
     inline uint32_t HTTPCode() const { return httpCode; }
-    inline string ContentLength() const { return contentLength; }
-    inline string Referer() const { return referer; }
-    inline string UserAgent() const { return userAgent; }
+    inline std::string ContentLength() const { return contentLength; }
+    inline std::string Referer() const { return referer; }
+    inline std::string UserAgent() const { return userAgent; }
 
 protected:
-    string ip;
-    string logName;
-    string authName;
-    string dateTime;
-    string method;
-    string document;
-    string httpVersion;
-    uint32_t httpCode;
-    string contentLength;
-    string referer;
-    string userAgent;
+    std::string ip;
+    std::string logName;
+    std::string authName;
+    std::string dateTime;
+    std::string method;
+    std::string document;
+    std::string httpVersion;
+    std::uint32_t httpCode;
+    std::string contentLength;
+    std::string referer;
+    std::string userAgent;
 };
 
 #endif // HTTPREQUEST_H_INCLUDED
