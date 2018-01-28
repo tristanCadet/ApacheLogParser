@@ -4,21 +4,22 @@
 #include <iostream>
 #include <fstream>
 
-using namespace std;
 
+#ifdef DEBUG
 static void testHTTPRequest()
 {
     HTTPRequest r;
-    ifstream ifs("./anonyme.log");
+    std::ifstream ifs("./anonyme.log");
     if (ifs)
     {
         ifs >> r;
     }
     else
     {
-        cerr << "Le fichier n'a pas pu être ouvert." << endl;
+        std::cerr << "Le fichier n'a pas pu être ouvert." << std::endl;
     }
 }
+#endif // DEBUG
 
 int main(int argc, char *argv[])
 {
