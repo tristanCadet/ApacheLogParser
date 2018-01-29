@@ -22,13 +22,13 @@ public:
 
     bool LoadFile(std::string filename, bool exclude, int selectHour, bool graph);
 
-    inline const std::multimap<uint32_t, std::string, std::greater<uint32_t>>& Top() { return top; }
-
     bool GenerateDotFile(std::string filename);
 
-protected:
+    void ComputeTop(uint32_t lastPosition = 10);
 
-    void computeTop(uint32_t lastPosition = 10);
+    inline const std::multimap<uint32_t, std::string, std::greater<uint32_t>>& Top() { return top; }
+
+protected:
 
     std::unordered_map<std::string, Document> website;
     std::multimap<uint32_t, std::string, std::greater<uint32_t>> top;

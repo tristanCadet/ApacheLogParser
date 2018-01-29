@@ -108,6 +108,7 @@ void Command::Execute()
                 std::cout << "Terminé !" << std::endl << std::endl;
         }
 
+        parser.ComputeTop();
         std::cout << "Top 10 des documents les plus visités : " << std::endl;
         for (const auto &element : parser.Top())
         {

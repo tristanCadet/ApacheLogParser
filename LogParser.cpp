@@ -136,8 +136,6 @@ bool LogParser::LoadFile(std::string filename, bool exclude,
             return false;
         }
 
-        computeTop();
-
 #ifdef DEBUG
         std::cerr << website.size() << " documents chargés depuis " << filename << "." << std::endl;
 #endif
@@ -185,7 +183,7 @@ bool LogParser::GenerateDotFile(std::string filename)
     return true;
 }
 
-void LogParser::computeTop(uint32_t lastPosition)
+void LogParser::ComputeTop(uint32_t lastPosition)
 {
     for (const std::pair<std::string, Document> &document : website)
     {
