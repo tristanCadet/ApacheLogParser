@@ -156,23 +156,18 @@ bool LogParser::GenerateDotFile(std::string filename)
     if (os)
     {
         os << "digraph {\n";
-        std::unordered_map<std::string, Document>::iterator itTargets = website.begin();
-        while (itTargets != website.end())
+        for (const std::pair<std::string, Document> &document : website)
         {
-            std::unordered_map<std::string, uint32_t>::iterator itReferers =
-                itTargets->second.referers.begin();
-            while (itReferers != itTargets->second.referers.end())
+            for (const std::pair<std::string, uint32_t> &referer : document.second.referers)
             {
-                if (itReferers->first != "-")
+                if (referer.first != "-")
                 {
                     os << "    ";
-                    os << "\"" << itReferers->first << "\" -> ";
-                    os << "\"" << itTargets->first << "\" [label=\"";
-                    os << itReferers->second << "\"];\n";
+                    os << "\"" << referer.first << "\" -> ";
+                    os << "\"" << document.first << "\" [label=\"";
+                    os << referer.second << "\"];\n";
                 }
-                itReferers++;
             }
-            itTargets++;
         }
         os << "}\n";
     }
@@ -181,7 +176,6 @@ bool LogParser::GenerateDotFile(std::string filename)
         std::cerr << "Erreur lors de la création du fichier " << filename << "." << std::endl;
         return false;
     }
-
     return true;
 }
 
