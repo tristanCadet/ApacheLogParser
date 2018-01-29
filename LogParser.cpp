@@ -159,7 +159,7 @@ bool LogParser::GenerateDotFile(std::string filename)
         std::unordered_map<std::string, Document>::iterator itTargets = website.begin();
         while (itTargets != website.end())
         {
-            std::unordered_map<std::string, uint64_t>::iterator itReferers =
+            std::unordered_map<std::string, uint32_t>::iterator itReferers =
                 itTargets->second.referers.begin();
             while (itReferers != itTargets->second.referers.end())
             {
@@ -185,7 +185,7 @@ bool LogParser::GenerateDotFile(std::string filename)
     return true;
 }
 
-void LogParser::computeTop(uint64_t lastPosition)
+void LogParser::computeTop(uint32_t lastPosition)
 {
     for (const std::pair<std::string, Document> &document : website)
     {

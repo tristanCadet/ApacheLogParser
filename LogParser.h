@@ -7,8 +7,8 @@
 
 struct Document
 {
-    std::unordered_map<std::string, uint64_t> referers = std::unordered_map<std::string, uint64_t>();
-    uint64_t viewCount = 0;
+    std::unordered_map<std::string, uint32_t> referers = std::unordered_map<std::string, uint32_t>();
+    uint32_t viewCount = 0;
 };
 
 class LogParser
@@ -22,16 +22,16 @@ public:
 
     bool LoadFile(std::string filename, bool exclude, int selectHour, bool graph);
 
-    inline const std::multimap<uint64_t, std::string, std::greater<uint64_t>>& Top() { return top; }
+    inline const std::multimap<uint32_t, std::string, std::greater<uint32_t>>& Top() { return top; }
 
     bool GenerateDotFile(std::string filename);
 
 protected:
 
-    void computeTop(uint64_t lastPosition = 10);
+    void computeTop(uint32_t lastPosition = 10);
 
     std::unordered_map<std::string, Document> website;
-    std::multimap<uint64_t, std::string, std::greater<uint64_t>> top;
+    std::multimap<uint32_t, std::string, std::greater<uint32_t>> top;
 };
 
 #endif // LOGPARSER_H_INCLUDED
