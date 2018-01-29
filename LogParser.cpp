@@ -133,6 +133,7 @@ bool LogParser::LoadFile(std::string filename, bool exclude,
         if (!file.eof())
         {
             std::cerr << "Erreur pendant la lecture du fichier " << filename << "." << std::endl;
+            return false;
         }
 
         computeTop();
@@ -160,12 +161,17 @@ bool LogParser::GenerateDotFile(std::string filename)
         {
             for (const std::pair<std::string, uint32_t> &referer : document.second.referers)
             {
-                if (referer.first != "-")
+                if(!os)
                 {
-                    os << "    ";
-                    os << "\"" << referer.first << "\" -> ";
-                    os << "\"" << document.first << "\" [label=\"";
-                    os << referer.second << "\"];\n";
+                    std::cerr << "Erreur pendant l'écriture du fichier " << filename << "." << std::endl;
+                    return false;
+                }
+                else if (referer.first != "-")
+                {
+                    os << "    "
+                       << "\"" << referer.first << "\" -> "
+                       << "\"" << document.first << "\" [label=\""
+                       << referer.second << "\"];\n";
                 }
             }
         }
