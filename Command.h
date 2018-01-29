@@ -8,6 +8,10 @@ class Command
 {
 public:
     Command(size_t paramCount, const char * const params[]);
+    Command(const Command &command) = default;
+    Command& operator=(const Command &command) = default;
+
+    virtual ~Command() = default;
 
     void Execute();
 
