@@ -8,6 +8,7 @@
 struct Document
 {
     std::unordered_map<std::string, uint64_t> referers = std::unordered_map<std::string, uint64_t>();
+    uint64_t viewCount = 0;
 };
 
 class LogParser
@@ -19,7 +20,7 @@ public:
 
     virtual ~LogParser() = default;
 
-    bool LoadFile(std::string filename, bool exclude, int selectHour);
+    bool LoadFile(std::string filename, bool exclude, int selectHour, bool graph);
 
     inline const std::multimap<uint64_t, std::string, std::greater<uint64_t>>& Top() { return top; }
 

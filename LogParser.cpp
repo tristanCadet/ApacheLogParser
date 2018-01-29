@@ -104,7 +104,7 @@ LogParser::LogParser() : website(), top()
 }
 
 bool LogParser::LoadFile(std::string filename, bool exclude,
-                         int selectHour)
+                         int selectHour, bool graph)
 {
     std::ifstream file(filename);
     if (file)
@@ -118,7 +118,14 @@ bool LogParser::LoadFile(std::string filename, bool exclude,
                 if (selectHour < 0 || request::getHour(request.DateTime()) == selectHour)
                 {
                     if (!exclude || !url::isExcluded(request.Document()))
-                        website[url::trim(request.Document())].referers[url::trim(url::removePrefix(request.Referer()))]++;
+                    {
+                        Document& doc = website[url::trim(request.Document())];
+                        doc.viewCount++;
+                        if (graph)
+                        {
+                            doc.referers[url::trim(url::removePrefix(request.Referer()))]++;
+                        }
+                    }
                 }
             }
         }
@@ -182,18 +189,14 @@ void LogParser::computeTop(uint64_t lastPosition)
 {
     for (const std::pair<std::string, Document> &document : website)
     {
-        uint64_t viewCount = 0;
-        for (const std::pair<std::string, uint64_t> &referer : document.second.referers)
-            viewCount += referer.second;
-
         if (top.size() < lastPosition)
         {
-            top.emplace(viewCount, document.first);
+            top.emplace(document.second.viewCount, document.first);
         }
-        else if (viewCount > std::prev(top.end())->first)
+        else if (document.second.viewCount > std::prev(top.end())->first)
         {
             top.erase(std::prev(top.end()));
-            top.emplace(viewCount, document.first);
+            top.emplace(document.second.viewCount, document.first);
         }
     }
 }
