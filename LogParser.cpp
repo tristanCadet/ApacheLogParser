@@ -4,8 +4,6 @@
 
 #include <iostream>
 #include <fstream>
-#include <string>
-#include <unordered_map>
 #include <algorithm>
 #include <functional>
 
@@ -106,6 +104,7 @@ LogParser::LogParser() : website(), top()
 bool LogParser::LoadFile(std::string filename, bool exclude,
                          int selectHour, bool graph)
 {
+    top.clear();
     std::ifstream file(filename);
     if (file)
     {
@@ -183,7 +182,16 @@ bool LogParser::GenerateDotFile(std::string filename)
     return true;
 }
 
-void LogParser::ComputeTop(uint32_t lastPosition)
+const std::multimap<uint32_t, std::string, std::greater<uint32_t>>& LogParser::Top(uint32_t lastPosition)
+{
+    if (top.size() != lastPosition)
+    {
+      computeTop(lastPosition);
+    }
+    return top;
+}
+
+void LogParser::computeTop(uint32_t lastPosition)
 {
     for (const std::pair<std::string, Document> &document : website)
     {

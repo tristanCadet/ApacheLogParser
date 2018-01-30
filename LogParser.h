@@ -24,11 +24,11 @@ public:
 
     bool GenerateDotFile(std::string filename);
 
-    void ComputeTop(uint32_t lastPosition = 10);
-
-    inline const std::multimap<uint32_t, std::string, std::greater<uint32_t>>& Top() { return top; }
+    const std::multimap<uint32_t, std::string, std::greater<uint32_t>>& Top(uint32_t lastPosition = 10);
 
 protected:
+
+    void computeTop(uint32_t lastPosition);
 
     std::unordered_map<std::string, Document> website;
     std::multimap<uint32_t, std::string, std::greater<uint32_t>> top;

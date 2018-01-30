@@ -1,6 +1,5 @@
 #include "HTTPRequest.h"
 
-#include <string>
 #include <iostream>
 #include <limits>
 
