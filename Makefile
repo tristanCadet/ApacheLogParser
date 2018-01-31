@@ -11,6 +11,7 @@ RMFLAGS = -f
 SRC_DIR=src
 OBJ_DIR=build
 BIN_DIR=bin
+TESTS_DIR=Tests
 
 SRC= $(wildcard $(SRC_DIR)/*.cpp)
 HEADERS = $(wildcard $(SOURCE_DIR)/*.h)
@@ -22,7 +23,7 @@ TARGET=$(BIN_DIR)/$(TARGET_NAME)
 .SUFFIXES:
 
 .PHONY: all
-all: release
+all: release test
 
 .PHONY: release
 release: CXXFLAGS += -O3
@@ -40,6 +41,10 @@ $(OBJ_DIR)/%.o: $(SRC_DIR)/%.cpp $(HEADERS) $(MAKEFILE)
 
 $(OBJ_DIR) $(BIN_DIR):
 	mkdir -p $@
+
+.PHONY: test
+test: $(TARGET)
+	cd $(TESTS_DIR); ./mktest.sh
 
 .PHONY: clean
 clean:
