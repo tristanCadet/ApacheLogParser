@@ -31,8 +31,7 @@ namespace url
     static std::string removePrefix(const std::string &url)
     {
         constexpr auto PREFIX = {"http://intranet-if.insa-lyon.fr",
-                                  "http://intranet-if",
-                                  "http://"};
+                                 "http://intranet-if"};
 
         for (const std::string &prefix : PREFIX)
         {
@@ -47,12 +46,16 @@ namespace url
             }
         }
 
-        return url;
+        size_t protocolPos = url.find("://");
+        if (protocolPos < std::string::npos-3)
+            return url.substr(protocolPos+3);
+        else
+            return url;
     }
 
     static std::string trim(const std::string &url)
     {
-        constexpr auto DELIMITERS = {'&', '?', ';'};
+        constexpr auto DELIMITERS = {'?', '&', ';', '#'};
         size_t split = std::string::npos;
         for (const auto &delim : DELIMITERS)
             split = std::min(split, url.find(delim));
