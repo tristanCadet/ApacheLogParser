@@ -1,0 +1,1 @@
+(../../bin/analog fichier.log && ../../bin/analog -g fichier.dot fichier.log && ../../bin/analog -e -g fichier.dot fichier.log && ../../bin/analog -eg fichier.dot fichier.log && ../../bin/analog -e -g fichier.dot  -t 14 fichier.log && ../../bin/analog -e fichier.log -g fichier.dot && ../../bin/analog -e -g fichier.dot fichier.log -e -t 14)
