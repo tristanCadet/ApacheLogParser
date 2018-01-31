@@ -119,9 +119,11 @@ bool LogParser::LoadFile(std::string filename, bool exclude,
             {
                 if (selectHour < 0 || request::getHour(request.DateTime()) == selectHour)
                 {
-                    if (!exclude || !url::isExcluded(request.Document()))
+                    const std::string documentURL = url::trim(request.Document());
+
+                    if (!exclude || !url::isExcluded(documentURL))
                     {
-                        Document& doc = website[url::trim(request.Document())];
+                        Document& doc = website[documentURL];
                         doc.viewCount++;
                         if (graph)
                         {
