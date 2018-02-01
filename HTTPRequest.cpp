@@ -11,12 +11,13 @@
 
 using namespace std;
 
-HTTPRequest::HTTPRequest() : ip(), logName(), authName(), dateTime(), method(), document(), httpVersion(), httpCode(), contentLength(), referer(), userAgent()
+HTTPRequest::HTTPRequest() : ip(), logName(), authName(), dateTime(), method(),
+    document(), httpVersion(), httpCode(), contentLength(), referer(), userAgent()
 {
 
 }
 
-istream& operator >> (istream& is, HTTPRequest& r)
+istream &operator >> (istream &is, HTTPRequest &r)
 {
     is >> r.ip;
     is >> r.logName;

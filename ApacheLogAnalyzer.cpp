@@ -19,7 +19,9 @@ namespace str
     static bool startsWith(const std::string &src, const std::string &prefix)
     {
         if (src.size() < prefix.size())
+        {
             return false;
+        }
 
         return std::equal(prefix.begin(), prefix.end(), src.begin());
     }
@@ -27,7 +29,9 @@ namespace str
     static bool endsWith(const std::string &src, const std::string &suffix)
     {
         if (src.size() < suffix.size())
+        {
             return false;
+        }
 
         return std::equal(suffix.rbegin(), suffix.rend(), src.rbegin());
     }
@@ -38,26 +42,36 @@ namespace url
     static std::string removePrefix(const std::string &url)
     {
         constexpr auto PREFIX = {"http://intranet-if.insa-lyon.fr",
-                                 "http://intranet-if"};
+                                 "http://intranet-if"
+                                };
 
         for (const std::string &prefix : PREFIX)
         {
             if (str::startsWith(url, prefix))
             {
-                //On part du premier / après le nom de domaine pour ignorer le numéro du port si présent
+                /* On part du premier / après le nom de domaine pour ignorer le
+                   numéro du port si présent */
                 size_t startPos = url.find('/', prefix.size());
                 if (startPos != std::string::npos)
+                {
                     return url.substr(startPos);
+                }
                 else
+                {
                     return url.substr(prefix.size());
+                }
             }
         }
 
         size_t protocolPos = url.find("://");
-        if (protocolPos < std::string::npos-3)
-            return url.substr(protocolPos+3);
+        if (protocolPos < std::string::npos - 3)
+        {
+            return url.substr(protocolPos + 3);
+        }
         else
+        {
             return url;
+        }
     }
 
     static std::string trim(const std::string &url)
@@ -65,7 +79,9 @@ namespace url
         constexpr auto DELIMITERS = {'?', '&', ';', '#'};
         size_t split = std::string::npos;
         for (const auto &delim : DELIMITERS)
+        {
             split = std::min(split, url.find(delim));
+        }
 
         return url.substr(0, split);
     }
@@ -73,7 +89,8 @@ namespace url
     static bool isExcluded(const std::string &url)
     {
         constexpr auto EXTENSIONS = {".bmp", ".png", ".jpg", ".jpeg", ".gif", ".svg", ".ico", ".css", ".js"};
-        return std::any_of(EXTENSIONS.begin(), EXTENSIONS.end(), std::bind(str::endsWith, url, std::placeholders::_1));
+        return std::any_of(EXTENSIONS.begin(), EXTENSIONS.end(),
+                           std::bind(str::endsWith, url, std::placeholders::_1));
     }
 }
 
@@ -96,13 +113,18 @@ namespace request
     {
         //Exemple : [08/Sep/2012:11:16:02 +0200]
         size_t pos = dateTime.find(':'); //Les deux caractères qui suivent sont l'heure
-        if (pos >= std::string::npos-2) //On teste dans ce sens pour éviter un overflow
+        if (pos >= std::string::npos -
+                2) //On teste dans ce sens pour éviter un overflow
+        {
             return -1;
+        }
 
-        if (pos+2 >= dateTime.size())
+        if (pos + 2 >= dateTime.size())
+        {
             return -1;
+        }
 
-        return (dateTime[pos+1]-'0')*10+(dateTime[pos+2]-'0');
+        return (dateTime[pos + 1] - '0') * 10 + (dateTime[pos + 2] - '0');
     }
 }
 
@@ -112,7 +134,7 @@ ApacheLogAnalyzer::ApacheLogAnalyzer() : website(), top()
 }
 
 bool ApacheLogAnalyzer::LoadFile(std::string filename, bool exclude,
-                         int selectHour, bool graph)
+                                 int selectHour, bool graph)
 {
     top.clear();
     std::ifstream file(filename);
@@ -122,7 +144,7 @@ bool ApacheLogAnalyzer::LoadFile(std::string filename, bool exclude,
         while (file >> request)
         {
             if (request::isAcceptedCode(request.HTTPCode()) &&
-                request::isAcceptedMethod(request.Method()))
+                    request::isAcceptedMethod(request.Method()))
             {
                 if (selectHour < 0 || request::getHour(request.DateTime()) == selectHour)
                 {
@@ -130,7 +152,7 @@ bool ApacheLogAnalyzer::LoadFile(std::string filename, bool exclude,
 
                     if (!exclude || !url::isExcluded(documentURL))
                     {
-                        Document& doc = website[documentURL];
+                        Document &doc = website[documentURL];
                         doc.viewCount++;
                         if (graph)
                         {
@@ -143,17 +165,20 @@ bool ApacheLogAnalyzer::LoadFile(std::string filename, bool exclude,
 
         if (!file.eof())
         {
-            std::cerr << "Erreur pendant la lecture du fichier " << filename << "." << std::endl;
+            std::cerr << "Erreur pendant la lecture du fichier " << filename << "." <<
+                      std::endl;
             return false;
         }
 
 #ifdef DEBUG
-        std::cerr << website.size() << " documents chargés depuis " << filename << "." << std::endl;
+        std::cerr << website.size() << " documents chargés depuis " << filename << "."
+                  << std::endl;
 #endif
     }
     else
     {
-        std::cerr << "Erreur lors de l'ouverture du fichier " << filename << "." << std::endl;
+        std::cerr << "Erreur lors de l'ouverture du fichier " << filename << "." <<
+                  std::endl;
         return false;
     }
 
@@ -170,9 +195,10 @@ bool ApacheLogAnalyzer::GenerateDotFile(std::string filename)
         {
             for (const std::pair<std::string, uint32_t> &referer : document.second.referers)
             {
-                if(!os)
+                if (!os)
                 {
-                    std::cerr << "Erreur pendant l'écriture du fichier " << filename << "." << std::endl;
+                    std::cerr << "Erreur pendant l'écriture du fichier " << filename << "." <<
+                              std::endl;
                     return false;
                 }
                 else if (referer.first != "-")
@@ -188,17 +214,19 @@ bool ApacheLogAnalyzer::GenerateDotFile(std::string filename)
     }
     else
     {
-        std::cerr << "Erreur lors de la création du fichier " << filename << "." << std::endl;
+        std::cerr << "Erreur lors de la création du fichier " << filename << "." <<
+                  std::endl;
         return false;
     }
     return true;
 }
 
-const std::multimap<uint32_t, std::string, std::greater<uint32_t>>& ApacheLogAnalyzer::Top(uint32_t lastPosition)
+const std::multimap<uint32_t, std::string, std::greater<uint32_t>>
+        &ApacheLogAnalyzer::Top(uint32_t lastPosition)
 {
     if (top.size() != lastPosition)
     {
-      computeTop(lastPosition);
+        computeTop(lastPosition);
     }
     return top;
 }

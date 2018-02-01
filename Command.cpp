@@ -12,7 +12,8 @@
 #include <sstream>
 #include <iostream>
 
-Command::Command(size_t paramCount, const char * const params[]) : sourceFile(), dotFile(), exclude(false), selectHour(-1), errors()
+Command::Command(size_t paramCount, const char * const params[]) : sourceFile(),
+    dotFile(), exclude(false), selectHour(-1), errors()
 {
     for (size_t i = 1; i < paramCount; i++)
     {
@@ -22,17 +23,23 @@ Command::Command(size_t paramCount, const char * const params[]) : sourceFile(),
             {
                 if (params[i][j] == 'g')
                 {
-                    if (params[i][j+1] == '\0' && i+1 < paramCount)
+                    if (params[i][j + 1] == '\0' && i + 1 < paramCount)
                     {
                         i++;
                         if (dotFile.empty())
+                        {
                             dotFile = params[i];
+                        }
                         else
+                        {
                             errors.push_back("Un seul fichier dot doit être spécifié.");
+                        }
                         break;
                     }
                     else
+                    {
                         errors.push_back("Un nom de fichier dot doit suivre l'option -g.");
+                    }
                 }
                 else if (params[i][j] == 'e')
                 {
@@ -40,7 +47,7 @@ Command::Command(size_t paramCount, const char * const params[]) : sourceFile(),
                 }
                 else if (params[i][j] == 't')
                 {
-                    if (params[i][j+1] == '\0' && i+1 < paramCount)
+                    if (params[i][j + 1] == '\0' && i + 1 < paramCount)
                     {
                         i++;
                         std::istringstream ss(params[i]);
@@ -48,9 +55,13 @@ Command::Command(size_t paramCount, const char * const params[]) : sourceFile(),
                         if (ss >> hour && ss.eof() && hour >= 0 && hour < 24)
                         {
                             if (selectHour == -1)
+                            {
                                 selectHour = hour;
+                            }
                             else
+                            {
                                 errors.push_back("L'heure ne doit être spécifiée qu'une seule fois.");
+                            }
                         }
                         else
                         {
@@ -60,7 +71,9 @@ Command::Command(size_t paramCount, const char * const params[]) : sourceFile(),
                         break;
                     }
                     else
+                    {
                         errors.push_back("Une heure doit suivre l'option -t.");
+                    }
                 }
                 else
                 {
@@ -71,9 +84,13 @@ Command::Command(size_t paramCount, const char * const params[]) : sourceFile(),
         else
         {
             if (sourceFile.empty())
+            {
                 sourceFile = params[i];
+            }
             else
+            {
                 errors.push_back("Un seul fichier log doit être spécifié.");
+            }
         }
     }
 
@@ -96,7 +113,9 @@ void Command::Execute()
     if (!errors.empty())
     {
         for (const std::string &err : errors)
+        {
             std::cerr << err << std::endl;
+        }
 
         return;
     }
@@ -112,13 +131,16 @@ void Command::Execute()
         {
             std::cout << "Génération du fichier " << dotFile << "..." << std::endl;
             if (analyzer.GenerateDotFile(dotFile))
+            {
                 std::cout << "Terminé !" << std::endl << std::endl;
+            }
         }
 
         std::cout << "Top 10 des documents les plus visités : " << std::endl;
         for (const auto &element : analyzer.Top())
         {
-            std::cout << "  - " << element.second << " (" << element.first << " hits)" << std::endl;
+            std::cout << "  - " << element.second << " (" << element.first << " hits)" <<
+                      std::endl;
         }
     }
 }
