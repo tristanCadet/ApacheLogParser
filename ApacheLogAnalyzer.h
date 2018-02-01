@@ -1,5 +1,5 @@
-#ifndef LOGPARSER_H_INCLUDED
-#define LOGPARSER_H_INCLUDED
+#ifndef APACHELOGANALYZER_H_INCLUDED
+#define APACHELOGANALYZER_H_INCLUDED
 
 #include <string>
 #include <unordered_map>
@@ -11,14 +11,14 @@ struct Document
     uint32_t viewCount = 0;
 };
 
-class LogParser
+class ApacheLogAnalyzer
 {
 public:
-    LogParser();
-    LogParser(const LogParser &parser) = default;
-    LogParser& operator=(const LogParser &parser) = default;
+    ApacheLogAnalyzer();
+    ApacheLogAnalyzer(const ApacheLogAnalyzer &analyzer) = default;
+    ApacheLogAnalyzer& operator=(const ApacheLogAnalyzer &analyzer) = default;
 
-    virtual ~LogParser() = default;
+    virtual ~ApacheLogAnalyzer() = default;
 
     bool LoadFile(std::string filename, bool exclude, int selectHour, bool graph);
 
@@ -34,4 +34,4 @@ protected:
     std::multimap<uint32_t, std::string, std::greater<uint32_t>> top;
 };
 
-#endif // LOGPARSER_H_INCLUDED
+#endif // APACHELOGANALYZER_H_INCLUDED

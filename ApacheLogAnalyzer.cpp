@@ -1,4 +1,4 @@
-#include "LogParser.h"
+#include "ApacheLogAnalyzer.h"
 
 #include "HTTPRequest.h"
 
@@ -99,12 +99,12 @@ namespace request
     }
 }
 
-LogParser::LogParser() : website(), top()
+ApacheLogAnalyzer::ApacheLogAnalyzer() : website(), top()
 {
 
 }
 
-bool LogParser::LoadFile(std::string filename, bool exclude,
+bool ApacheLogAnalyzer::LoadFile(std::string filename, bool exclude,
                          int selectHour, bool graph)
 {
     top.clear();
@@ -153,7 +153,7 @@ bool LogParser::LoadFile(std::string filename, bool exclude,
     return true;
 }
 
-bool LogParser::GenerateDotFile(std::string filename)
+bool ApacheLogAnalyzer::GenerateDotFile(std::string filename)
 {
     std::ofstream os(filename);
     if (os)
@@ -187,7 +187,7 @@ bool LogParser::GenerateDotFile(std::string filename)
     return true;
 }
 
-const std::multimap<uint32_t, std::string, std::greater<uint32_t>>& LogParser::Top(uint32_t lastPosition)
+const std::multimap<uint32_t, std::string, std::greater<uint32_t>>& ApacheLogAnalyzer::Top(uint32_t lastPosition)
 {
     if (top.size() != lastPosition)
     {
@@ -196,7 +196,7 @@ const std::multimap<uint32_t, std::string, std::greater<uint32_t>>& LogParser::T
     return top;
 }
 
-void LogParser::computeTop(uint32_t lastPosition)
+void ApacheLogAnalyzer::computeTop(uint32_t lastPosition)
 {
     for (const std::pair<std::string, Document> &document : website)
     {

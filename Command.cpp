@@ -1,6 +1,6 @@
 #include "Command.h"
 
-#include "LogParser.h"
+#include "ApacheLogAnalyzer.h"
 
 #include <sstream>
 #include <iostream>
@@ -94,22 +94,22 @@ void Command::Execute()
         return;
     }
 
-    LogParser parser;
+    ApacheLogAnalyzer analyzer;
 
     std::cout << "Lecture du fichier " << sourceFile << "..." << std::endl;
-    if (parser.LoadFile(sourceFile, exclude, selectHour, !dotFile.empty()))
+    if (analyzer.LoadFile(sourceFile, exclude, selectHour, !dotFile.empty()))
     {
         std::cout << "Terminé !" << std::endl << std::endl;
 
         if (!dotFile.empty())
         {
             std::cout << "Génération du fichier " << dotFile << "..." << std::endl;
-            if (parser.GenerateDotFile(dotFile))
+            if (analyzer.GenerateDotFile(dotFile))
                 std::cout << "Terminé !" << std::endl << std::endl;
         }
 
         std::cout << "Top 10 des documents les plus visités : " << std::endl;
-        for (const auto &element : parser.Top())
+        for (const auto &element : analyzer.Top())
         {
             std::cout << "  - " << element.second << " (" << element.first << " hits)" << std::endl;
         }
