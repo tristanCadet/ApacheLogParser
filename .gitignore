@@ -32,3 +32,14 @@
 *.app
 analog
 
+# Generated files
+*.dot
+*.png
+*.svg
+
+# Logs
+*.log
+
+# Tests
+Tests/results.csv
+Tests/test.log
