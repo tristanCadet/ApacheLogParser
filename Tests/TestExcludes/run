@@ -1,0 +1,1 @@
+../../bin/analog -e -g /dev/stdout ../test.log | grep -E "\.bmp|\.png|\.jpg|\.jpeg|\.gif|\.svg|\.ico|\.css|\.js"

@@ -1,0 +1,1 @@
+../../bin/analog -e -g /dev/stdout ../test.log | grep -E "://|intranet-if"

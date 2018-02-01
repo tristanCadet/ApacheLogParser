@@ -1,0 +1,1 @@
+(../../bin/analog ../test.log && ../../bin/analog -g fichier.dot ../test.log && ../../bin/analog -e -g fichier.dot ../test.log && ../../bin/analog -eg fichier.dot ../test.log && ../../bin/analog -e -g fichier.dot -t 14 ../test.log && ../../bin/analog -e ../test.log -g fichier.dot && ../../bin/analog -e -g fichier.dot ../test.log -e -t 14) > /dev/null
