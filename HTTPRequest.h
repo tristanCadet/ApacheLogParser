@@ -1,3 +1,11 @@
+/**
+ * @class HTTPRequest
+ * @brief est une classe de données munie de ses getters et d'une surcharge de l'opérateur <<. L'objectif est de structurer les informations concernant une requête HTTP parsées depuis des log Apache.
+ * @date 07/02/2018
+ * @author CADET DU
+ */
+//---------- Interface de la classe <HTTPRequest> (fichier HTTPRequest.h) ------------
+
 #ifndef HTTPREQUEST_H_INCLUDED
 #define HTTPREQUEST_H_INCLUDED
 
@@ -12,6 +20,14 @@ public:
     HTTPRequest & operator = (const HTTPRequest & aHTTPRequest) = default;
     virtual ~HTTPRequest() = default;
 
+
+    /** @brief Surcharge de l'opérateur <<. Parse une requête r à partir d'un flux d'entrée is sur un fichier de log Apache
+     *
+     * @param is flux d'entrée
+     * @param r requête HTTP à parser
+     *
+     * @return Le flux d'entrée
+     */
     friend std::istream& operator >> (std::istream& is, HTTPRequest& r);
 
     inline std::string IP() const { return ip; }

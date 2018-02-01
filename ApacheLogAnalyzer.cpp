@@ -1,3 +1,10 @@
+/*************************************************************************
+                              ApacheLogAnalyzer
+                             -------------------
+    copyright            : (C) 2018 par CADET DU
+*************************************************************************/
+//---------- Implémentation de la classe <ApacheLogAnalyzer> (fichier ApacheLogAnalyzer.cpp) ------------
+
 #include "ApacheLogAnalyzer.h"
 
 #include "HTTPRequest.h"

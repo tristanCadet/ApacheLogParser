@@ -1,3 +1,10 @@
+/*************************************************************************
+                           main - Point d'entrée de l'application
+                             -------------------
+    copyright            : (C) 2018 par CADET DU
+*************************************************************************/
+//------------- Implémentation du main (fichier main.cpp) ---------------
+
 #include "Command.h"
 #include "HTTPRequest.h"
 

@@ -1,3 +1,9 @@
+/*************************************************************************
+                                HTTPRequest
+                             -------------------
+    copyright            : (C) 2018 par CADET DU
+*************************************************************************/
+//---------- Implémentation de la classe <HTTPRequest> (fichier HTTPRequest.cpp) ------------
 #include "HTTPRequest.h"
 
 #include <iostream>

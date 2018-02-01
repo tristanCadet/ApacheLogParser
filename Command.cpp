@@ -1,3 +1,10 @@
+/*************************************************************************
+                                   Command
+                             -------------------
+    copyright            : (C) 2018 par CADET DU
+*************************************************************************/
+//---------- Implémentation de la classe <Command> (fichier Command.cpp) ------------
+
 #include "Command.h"
 
 #include "ApacheLogAnalyzer.h"
