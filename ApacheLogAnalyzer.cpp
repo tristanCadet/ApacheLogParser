@@ -149,14 +149,15 @@ bool ApacheLogAnalyzer::LoadFile(std::string filename, bool exclude,
                 if (selectHour < 0 || request::getHour(request.DateTime()) == selectHour)
                 {
                     const std::string documentURL = url::trim(request.Document());
+                    const std::string refererURL = url::trim(url::removePrefix(request.Referer()));
 
-                    if (!exclude || !url::isExcluded(documentURL))
+                    if (!exclude || (!url::isExcluded(documentURL) && !url::isExcluded(refererURL)))
                     {
                         Document &doc = website[documentURL];
                         doc.viewCount++;
                         if (graph)
                         {
-                            doc.referers[url::trim(url::removePrefix(request.Referer()))]++;
+                            doc.referers[refererURL]++;
                         }
                     }
                 }
