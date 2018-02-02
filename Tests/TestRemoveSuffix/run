@@ -1,0 +1,1 @@
+../../bin/analog -g /dev/stdout ../test.log | grep -E '\?|;.*"|#|&'
