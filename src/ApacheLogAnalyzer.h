@@ -15,8 +15,7 @@
 
 struct Document
 {
-    std::unordered_map<std::string, uint32_t> referers =
-        std::unordered_map<std::string, uint32_t>();
+    std::unordered_map<std::string, uint32_t> referers = {};
     uint32_t viewCount = 0;
 };
 
