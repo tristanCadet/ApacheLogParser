@@ -31,7 +31,5 @@ static void testHTTPRequest()
 int main(int argc, char *argv[])
 {
     Command command(argc, argv);
-    command.Execute();
-
-    return 0;
+    return command.Execute() ? 0 : 1;
 }

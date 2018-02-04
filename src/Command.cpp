@@ -11,6 +11,7 @@
 
 #include <sstream>
 #include <iostream>
+#include <unistd.h>
 
 Command::Command(size_t paramCount, const char * const params[]) : sourceFile(),
     dotFile(), exclude(false), selectHour(-1), errors()
@@ -100,7 +101,7 @@ Command::Command(size_t paramCount, const char * const params[]) : sourceFile(),
     }
 }
 
-void Command::Execute()
+bool Command::Execute()
 {
 #ifdef DEBUG
     std::cerr << "[sourceFile = " << sourceFile
@@ -117,22 +118,41 @@ void Command::Execute()
             std::cerr << err << std::endl;
         }
 
-        return;
+        return false;
     }
 
     ApacheLogAnalyzer analyzer;
 
     std::cout << "Lecture du fichier " << sourceFile << "..." << std::endl;
+    if (exclude)
+    {
+        std::cout << "  - Ignore les documents images, css et javascript" << std::endl;
+    }
+
+    if (selectHour >= 0)
+    {
+        std::cout << "  - Ne traite que les requêtes envoyées à " << selectHour << "h." << std::endl;
+    }
+
     if (analyzer.LoadFile(sourceFile, exclude, selectHour, !dotFile.empty()))
     {
         std::cout << "Terminé !" << std::endl << std::endl;
 
         if (!dotFile.empty())
         {
+            if (access(dotFile.c_str(), F_OK) == 0)
+            {
+                std::cout << "Attention, le fichier " << dotFile << " existe déjà, il sera écrasé." << std::endl;
+            }
+
             std::cout << "Génération du fichier " << dotFile << "..." << std::endl;
             if (analyzer.GenerateDotFile(dotFile))
             {
                 std::cout << "Terminé !" << std::endl << std::endl;
+            }
+            else
+            {
+                return false;
             }
         }
 
@@ -143,5 +163,11 @@ void Command::Execute()
                       std::endl;
         }
     }
+    else
+    {
+        return false;
+    }
+
+    return true;
 }
 

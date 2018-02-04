@@ -40,7 +40,7 @@ public:
     		   affichées.
      *
      */
-    void Execute();
+    bool Execute();
 
 protected:
     std::string sourceFile;
