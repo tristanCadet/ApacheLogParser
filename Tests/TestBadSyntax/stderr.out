@@ -1,7 +1,14 @@
+Utilisation : ../../bin/analog [-e] [-t <heure>] [-g <fichier.dot>] fichier.log
 Un fichier log doit être spécifié.
+Utilisation : ../../bin/analog [-e] [-t <heure>] [-g <fichier.dot>] fichier.log
 Un fichier log doit être spécifié.
+Utilisation : ../../bin/analog [-e] [-t <heure>] [-g <fichier.dot>] fichier.log
 Un fichier log doit être spécifié.
+Utilisation : ../../bin/analog [-e] [-t <heure>] [-g <fichier.dot>] fichier.log
 Un seul fichier log doit être spécifié.
+Utilisation : ../../bin/analog [-e] [-t <heure>] [-g <fichier.dot>] fichier.log
 L'heure ne doit être spécifiée qu'une seule fois.
+Utilisation : ../../bin/analog [-e] [-t <heure>] [-g <fichier.dot>] fichier.log
 L'heure doit être un nombre entier positif compris entre 0 et 23.
+Utilisation : ../../bin/analog [-e] [-t <heure>] [-g <fichier.dot>] fichier.log
 L'heure doit être un nombre entier positif compris entre 0 et 23.

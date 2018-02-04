@@ -48,6 +48,7 @@ protected:
     bool exclude;
     int selectHour;
 
+    std::string programName;
     std::vector<std::string> errors;
 };
 

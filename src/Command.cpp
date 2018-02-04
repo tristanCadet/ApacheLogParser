@@ -14,8 +14,13 @@
 #include <unistd.h>
 
 Command::Command(size_t paramCount, const char * const params[]) : sourceFile(),
-    dotFile(), exclude(false), selectHour(-1), errors()
+    dotFile(), exclude(false), selectHour(-1), programName("(null)"), errors()
 {
+    if (paramCount > 0 && params[0][0] != '\0')
+    {
+        programName = params[0];
+    }
+    
     for (size_t i = 1; i < paramCount; i++)
     {
         if (params[i][0] == '-')
@@ -113,6 +118,7 @@ bool Command::Execute()
 
     if (!errors.empty())
     {
+        std::cerr << "Utilisation : " << programName << " [-e] [-t <heure>] [-g <fichier.dot>] fichier.log" << std::endl;
         for (const std::string &err : errors)
         {
             std::cerr << err << std::endl;
