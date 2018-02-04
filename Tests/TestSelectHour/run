@@ -1,1 +1,1 @@
-HOUR=$(printf "%02d\n" $(shuf -i 1-23 -n 1)) && grep -E ":$HOUR:[0-9][0-9]:[0-9][0-9] " ../test.log | ../../bin/analog -g fichier.dot.outfile /dev/stdin | grep -A 10 "Top 10" > std.out && ../../bin/analog -t $HOUR -g fichier.dot ../test.log | grep -A 10 "Top 10"
+HOUR=$(printf "%02d\n" $(shuf -i 0-23 -n 1)) && grep -E ":$HOUR:[0-9][0-9]:[0-9][0-9] " ../test.log | ../../bin/analog -g fichier.dot.outfile /dev/stdin | grep -A 10 "Top 10" > std.out && ../../bin/analog -t $HOUR -g fichier.dot ../test.log | grep -A 10 "Top 10"
