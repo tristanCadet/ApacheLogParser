@@ -1,0 +1,3 @@
+Lecture du fichier /dev/urandom...
+  - Ignore les documents images, css et javascript
+  - Ne traite que les requêtes envoyées à 16h.
