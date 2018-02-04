@@ -26,9 +26,9 @@ do
     let "nTotal=$nTotal+1"
   done
 
-  if [ $nMis -gt 0 ]
+  if [ $nKo -gt 0 ]
   then
-      echo "Error at run : $n"
+      echo "Error at run     : $n"
       break
   fi
 done
