@@ -13,8 +13,8 @@ OBJ_DIR=build
 BIN_DIR=bin
 TESTS_DIR=Tests
 
-SRC= $(wildcard $(SRC_DIR)/*.cpp)
-HEADERS = $(wildcard $(SOURCE_DIR)/*.h)
+SRC = $(wildcard $(SRC_DIR)/*.cpp)
+HEADERS = $(wildcard $(SRC_DIR)/*.h)
 MAKEFILE = Makefile
 OBJ=$(patsubst $(SRC_DIR)/%,$(OBJ_DIR)/%,$(SRC:.cpp=.o))
 TARGET_NAME=analog
