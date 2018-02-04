@@ -3,10 +3,17 @@ nKo=0
 nTotal=0
 nMis=0
 
-for n in $(seq 3)
+for n in $(seq 4)
 do
   find . -name "*.dot" -delete
-  ./mkRandomLog.py > test.log
+
+  if [ $n -lt 4 ]
+  then
+    rm test.log
+    ./mkRandomLog.py > test.log
+  else
+    ln -sf /tmp/anonyme.log test.log
+  fi
 
   echo "Test ID;Return code validation;Out result;StdErr result;File creation result;Global result" >results$n.csv
 
