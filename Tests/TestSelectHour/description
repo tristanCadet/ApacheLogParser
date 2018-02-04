@@ -1,1 +1,2 @@
 Ce test vérifie que la sélection d'une heure en particulier soit prise en compte. Ici, le test sélectionne l'heure aléatoirement.
+Pour vérifier cela, on ne garde que les lignes correspondantes à une heure en particulier, on génère le top10 et le graphe et on compare le résultat avec celui où on n'a pas effectué de filtrage manuel.

@@ -1,1 +1,2 @@
 Ce test vérifie la suppression effective des paramètres GET dans les noms de documents.
+Pour vérifier cela, on vérifie que la sortie ne contienne pas les caractères ?;#& dans le nom des noeuds du graphe.

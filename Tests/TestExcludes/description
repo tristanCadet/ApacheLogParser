@@ -1,1 +1,2 @@
 Ce test vérifie l'exclusion des documents avec le paramètre -e dans le top10 et dans le fichier dot généré.
+Pour vérifier cela, on vérifie que les sorties ne contiennent pas les extensions indésirables.

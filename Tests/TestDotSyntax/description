@@ -1,1 +1,2 @@
 Ce test permet de vérifier si le fichier dot généré est reconnu syntaxiquement par dot.
+Ainsi le code de retour doit donc être de 0.

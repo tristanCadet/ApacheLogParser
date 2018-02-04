@@ -1,1 +1,2 @@
 Ce test vérifie que le programme ne prenne en compte que les méthodes GET et POST.
+Pour vérifier cela, on enlève les lignes contenant GET ou POST du log, on génère le top10 et le graphe, et on compare le résultat avec celui où on n'a pas effectué de filtrage manuel.

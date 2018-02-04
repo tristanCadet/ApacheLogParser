@@ -1,1 +1,2 @@
 Ce test vérifie que le graphe généré est correct.
+Pour cela, on génère un graphe en shell et on compare le résultat avec celui du programme sans prendre en compte l'ordre des lignes.

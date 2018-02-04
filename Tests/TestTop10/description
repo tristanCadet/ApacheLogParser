@@ -1,1 +1,2 @@
 Ce test vérifie que le top10 est correct.
+Pour vérifier cela, on génère le top10 en shell et on compare le résultat avec celui du programme.

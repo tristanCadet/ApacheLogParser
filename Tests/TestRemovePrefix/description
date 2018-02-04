@@ -1,1 +1,2 @@
 Ce test vérifie la suppression effective des noms de protocoles et du nom de domaine si ce dernier est local (intranet-if).
+Pour cela, on vérifie si la sortie ne contient bien aucune occurence de :// ou intranet-if.
