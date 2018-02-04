@@ -1,0 +1,1 @@
+valgrind ../../bin/analog -g /dev/null -e -t 10 ../test.log 2>&1 | grep -E "(definitely lost: 0 bytes in 0 blocks)|(All heap blocks were freed -- no leaks are possible)"
