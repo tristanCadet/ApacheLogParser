@@ -11,12 +11,21 @@
 
 #include <string>
 #include <unordered_map>
-#include <map>
+#include <set>
 
 struct Document
 {
     std::unordered_map<std::string, uint32_t> referers = {};
     uint32_t viewCount = 0;
+};
+
+struct Top10Comp
+{
+    bool operator() (const std::pair<uint32_t, std::string> &x,
+            const std::pair<uint32_t, std::string> &y) const
+    {
+        return x.first > y.first || (x.first == y.first && x.second < y.second);
+    }
 };
 
 class ApacheLogAnalyzer
@@ -66,7 +75,7 @@ public:
      * @return Le top des documents les plus consultés jusqu'à la position 
                lastPosition.
      */
-    const std::multimap<uint32_t, std::string, std::greater<uint32_t>> &Top(
+    const std::set<std::pair<uint32_t, std::string>, Top10Comp> &Top(
                 uint32_t lastPosition = 10);
 
 protected:
@@ -78,7 +87,7 @@ protected:
     void computeTop(uint32_t lastPosition);
 
     std::unordered_map<std::string, Document> website;
-    std::multimap<uint32_t, std::string, std::greater<uint32_t>> top;
+    std::set<std::pair<uint32_t, std::string>, Top10Comp> top;
 };
 
 #endif // APACHELOGANALYZER_H_INCLUDED

@@ -222,7 +222,7 @@ bool ApacheLogAnalyzer::GenerateDotFile(std::string filename)
     return true;
 }
 
-const std::multimap<uint32_t, std::string, std::greater<uint32_t>>
+const std::set<std::pair<uint32_t, std::string>, Top10Comp>
         &ApacheLogAnalyzer::Top(uint32_t lastPosition)
 {
     if (top.size() != lastPosition)
@@ -234,16 +234,21 @@ const std::multimap<uint32_t, std::string, std::greater<uint32_t>>
 
 void ApacheLogAnalyzer::computeTop(uint32_t lastPosition)
 {
+    Top10Comp comp;
     for (const std::pair<std::string, Document> &document : website)
     {
         if (top.size() < lastPosition)
         {
             top.emplace(document.second.viewCount, document.first);
         }
-        else if (document.second.viewCount > std::prev(top.end())->first)
+        else if (document.second.viewCount >= std::prev(top.end())->first)
         {
-            top.erase(std::prev(top.end()));
-            top.emplace(document.second.viewCount, document.first);
+            auto doc = make_pair(document.second.viewCount, document.first);
+            if (comp(doc, *std::prev(top.end())))
+            {
+                top.erase(std::prev(top.end()));
+                top.insert(std::move(doc));
+            }
         }
     }
 }
