@@ -22,6 +22,8 @@ TARGET=$(BIN_DIR)/$(TARGET_NAME)
 
 .SUFFIXES:
 
+release:
+
 .PHONY: all
 all: release test
 
