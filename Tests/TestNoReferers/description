@@ -1,0 +1,1 @@
+Ce test vérifie qu'avec aucun referer, le top10 reste correct bien que le graphe est vide (en partie même test que TestTop10).
