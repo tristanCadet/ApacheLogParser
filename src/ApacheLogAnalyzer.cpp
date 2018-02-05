@@ -155,7 +155,7 @@ bool ApacheLogAnalyzer::LoadFile(std::string filename, bool exclude,
                     {
                         Document &doc = website[documentURL];
                         doc.viewCount++;
-                        if (graph)
+                        if (graph && refererURL != "-")
                         {
                             doc.referers[refererURL]++;
                         }
