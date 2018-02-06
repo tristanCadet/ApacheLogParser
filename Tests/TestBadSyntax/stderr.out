@@ -3,6 +3,15 @@ Un fichier log doit être spécifié.
 Utilisation : ../../bin/analog [-e] [-t <heure>] [-g <fichier.dot>] fichier.log
 Un fichier log doit être spécifié.
 Utilisation : ../../bin/analog [-e] [-t <heure>] [-g <fichier.dot>] fichier.log
+Paramètre -s inconnu !
+Paramètre -d inconnu !
+Paramètre -k inconnu !
+Paramètre -f inconnu !
+Paramètre -n inconnu !
+Paramètre -l inconnu !
+Paramètre -k inconnu !
+Un fichier log doit être spécifié.
+Utilisation : ../../bin/analog [-e] [-t <heure>] [-g <fichier.dot>] fichier.log
 Un fichier log doit être spécifié.
 Utilisation : ../../bin/analog [-e] [-t <heure>] [-g <fichier.dot>] fichier.log
 Un seul fichier log doit être spécifié.

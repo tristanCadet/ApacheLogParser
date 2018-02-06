@@ -1,1 +1,1 @@
-(../../bin/analog; ../../bin/analog -e; ../../bin/analog -g fichier.dot; ../../bin/analog -g fichier.dot fichier.log fichier2.log; ../../bin/analog -t 10 -t 23 fichier.log; ../../bin/analog -t string fichier.log; ../../bin/analog -t 14string fichier.log)
+(../../bin/analog; ../../bin/analog -e; ../../bin/analog -sdkfnlk; ../../bin/analog -g fichier.dot; ../../bin/analog -g fichier.dot fichier.log fichier2.log; ../../bin/analog -t 10 -t 23 fichier.log; ../../bin/analog -t string fichier.log; ../../bin/analog -t 14string fichier.log)
