@@ -202,7 +202,7 @@ bool ApacheLogAnalyzer::GenerateDotFile(std::string filename)
                               std::endl;
                     return false;
                 }
-                else if (referer.first != "-")
+                else
                 {
                     os << "    "
                        << "\"" << referer.first << "\" -> "
