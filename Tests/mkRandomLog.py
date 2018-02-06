@@ -79,7 +79,7 @@ def randomContentLength():
     return str(randint(0, 10000000)) if randint(0,1) else "-"
 
 def randomReferer():
-    return "\"" + choice(domains) + randomURL() + "\""
+    return "\"" + choice(domains) + randomURL() + "\"" if randint(0,3) != 3 else "\"-\""
 
 def randomUserAgent():
     return "\"" + choice(userAgents) + "\""
