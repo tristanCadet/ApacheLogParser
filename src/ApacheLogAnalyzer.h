@@ -13,13 +13,24 @@
 #include <unordered_map>
 #include <set>
 
+/**
+ * @struct Document
+ * Représente les attributs d'un document, c'est-à-dire
+ * l'ensemble de ses documents référents associés
+ * ainsi que son nombre total de consultations.
+ */
 struct Document
 {
     std::unordered_map<std::string, uint32_t> referers = {};
     uint32_t viewCount = 0;
 };
 
-struct Top10Comp
+/**
+ * @struct TopComp
+ * Structure de comparaison utilisée pour trier le top, d'abord
+ * par nombre de consultations décroissant, puis par nom en ordre ASCII.
+ */
+struct TopComp
 {
     bool operator() (const std::pair<uint32_t, std::string> &x,
             const std::pair<uint32_t, std::string> &y) const
@@ -75,7 +86,7 @@ public:
      * @return Le top des documents les plus consultés jusqu'à la position 
                lastPosition.
      */
-    const std::set<std::pair<uint32_t, std::string>, Top10Comp> &Top(
+    const std::set<std::pair<uint32_t, std::string>, TopComp> &Top(
                 uint32_t lastPosition = 10);
 
 protected:
@@ -87,7 +98,7 @@ protected:
     void computeTop(uint32_t lastPosition);
 
     std::unordered_map<std::string, Document> website;
-    std::set<std::pair<uint32_t, std::string>, Top10Comp> top;
+    std::set<std::pair<uint32_t, std::string>, TopComp> top;
 };
 
 #endif // APACHELOGANALYZER_H_INCLUDED

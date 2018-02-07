@@ -1,0 +1,1 @@
+rm -f test_* && FILE="test_$(cat /dev/urandom | tr -cd 'a-f0-9' | head -c 16)" && echo "Erreur lors de la création du fichier $FILE." > stderr.out && touch $FILE && chmod 000 $FILE && ../../bin/analog -g $FILE ../test.log

@@ -1,0 +1,2 @@
+Ce test vérifie que le programme ne prenne en compte que les codes entre 200 et 299.
+Pour vérifier cela, on enlève les lignes n'ayant pas un code entre 200 et 299 du log, on génère le top10 et le graphe, et on compare le résultat avec celui où on n'a pas effectué de filtrage manuel.

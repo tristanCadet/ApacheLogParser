@@ -1,0 +1,1 @@
+rm -f test_* && FILE="test_$(cat /dev/urandom | tr -cd 'a-f0-9' | head -c 16)" && echo "Erreur lors de l'ouverture du fichier $FILE." > stderr.out && echo "Lecture du fichier $FILE..." > std.out && touch $FILE && chmod 000 $FILE && ../../bin/analog -g fichier.dot $FILE

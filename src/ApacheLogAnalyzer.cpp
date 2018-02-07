@@ -155,7 +155,7 @@ bool ApacheLogAnalyzer::LoadFile(std::string filename, bool exclude,
                     {
                         Document &doc = website[documentURL];
                         doc.viewCount++;
-                        if (graph)
+                        if (graph && refererURL != "-")
                         {
                             doc.referers[refererURL]++;
                         }
@@ -202,7 +202,7 @@ bool ApacheLogAnalyzer::GenerateDotFile(std::string filename)
                               std::endl;
                     return false;
                 }
-                else if (referer.first != "-")
+                else
                 {
                     os << "    "
                        << "\"" << referer.first << "\" -> "
@@ -222,7 +222,7 @@ bool ApacheLogAnalyzer::GenerateDotFile(std::string filename)
     return true;
 }
 
-const std::set<std::pair<uint32_t, std::string>, Top10Comp>
+const std::set<std::pair<uint32_t, std::string>, TopComp>
         &ApacheLogAnalyzer::Top(uint32_t lastPosition)
 {
     if (top.size() != lastPosition)
@@ -234,7 +234,7 @@ const std::set<std::pair<uint32_t, std::string>, Top10Comp>
 
 void ApacheLogAnalyzer::computeTop(uint32_t lastPosition)
 {
-    Top10Comp comp;
+    TopComp comp;
     for (const std::pair<std::string, Document> &document : website)
     {
         if (top.size() < lastPosition)

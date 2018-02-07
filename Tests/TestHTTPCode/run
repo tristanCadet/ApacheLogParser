@@ -1,0 +1,1 @@
+grep -E 'HTTP/1.[0-1]" 2[0-9][0-9] ' ../test.log | ../../bin/analog -g fichier.dot.outfile /dev/stdin | grep -A 10 "Top 10" > std.out && ../../bin/analog -g fichier.dot ../test.log | grep -A 10 "Top 10"
